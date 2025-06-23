@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: quispe-t2-citas-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_quispe_citas
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          secret-key: MiSuperClaveSegura1234567890!@#$
+
+auth:
+  client-id: ${CLIENT_ID:123456}
+  client-secret: ${CLIENT_SECRET:hola}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      prefer-ip-address: true
