@@ -1,11 +1,11 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
-    name: quispe-t2-citas-service
+    name: producto-service
   datasource:
-    url: jdbc:mysql://localhost:3306/bd_quispe_citas
+    url: jdbc:mysql://localhost:3306/daw_pproducto
     username: root
     password: 1234
   jpa:
@@ -30,6 +30,27 @@ spring:
 auth:
   client-id: ${CLIENT_ID:123456}
   client-secret: ${CLIENT_SECRET:hola}
+
+resilence4j:
+  circuitbreaker:
+    instances:
+      categoriaService:
+        sliding-window-size: 5
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state:
+          seconds: 10
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
 
 eureka:
   client:
