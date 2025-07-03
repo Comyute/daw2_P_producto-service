@@ -93,6 +93,13 @@ public class ProductoServiceImpl implements ProductoService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ProductoResponseDto> buscarProducto(String nombre) {
+        return productoRepository.buscarPorNombre(nombre).stream()
+                .map(productoMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     public CategoriaDto fallbackCategoria(Long id, Throwable throwable){
         log.warn("Fallback ejecutado: {}", throwable.getMessage());
         return new CategoriaDto(0L,"Categoria no disponible");

@@ -49,4 +49,9 @@ public class ProductoController {
     public CategoriaDto listarProductoPorCategoria(@PathVariable Long productoId){
         return service.getCategoriaByProducto(productoId);
     }
+
+    @GetMapping("/buscar/{nombreP}")
+    public ResponseEntity<List<ProductoResponseDto>> buscarProductoNombre(@PathVariable String nombreP){
+        return ResponseEntity.ok(service.buscarProducto(nombreP));
+    }
 }

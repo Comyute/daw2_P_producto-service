@@ -13,4 +13,5 @@ public interface ProductoService {
     ProductoResponseDto listarProductoById(Long id);
     CategoriaDto getCategoriaByProducto(Long citaId);
     List<ProductoResponseDto> listarProductosEnOferta();
+    List<ProductoResponseDto> buscarProducto(String nombre);
 }
